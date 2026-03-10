@@ -1,20 +1,24 @@
 import { format } from "date-fns";
 
 export function formatCurrency(amount, currencyCode = 'GBP') {
-    const currencies = {
-        GBP: {locale: 'en-GB'},
-        USD: {locale: 'en-US'},
-        INR: {locale: 'en-IN'},
-        EUR: {locale: 'de-DE'}
-    }
-    
-    const {locale} = currencies[currencyCode] || currencies.GBP
+  const supportedCurrencies = {
+    GBP: { locale: 'en-GB' },
+    USD: { locale: 'en-US' },
+    INR: { locale: 'en-IN' },
+    EUR: { locale: 'de-DE' },
+  }
 
-    return new Intl.NumberFormat(locale, {
-        style: 'currency',
-        currency: currencyCode,
-        maximumFractionDigits: 2,
-    }).format(amount)
+  const currency = supportedCurrencies[currencyCode]
+    ? currencyCode
+    : 'GBP'
+
+  const { locale } = supportedCurrencies[currency]
+
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+    maximumFractionDigits: 2,
+  }).format(amount)
 }
 
 export function formatDate(dateString) {

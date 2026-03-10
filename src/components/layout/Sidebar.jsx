@@ -1,11 +1,13 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard,
   ArrowLeftRight,
   PiggyBank,
   BarChart3,
   LogOut,
+  User,
 } from 'lucide-react'
+import { supabase } from '../../lib/supabase'
 
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -15,6 +17,19 @@ const navItems = [
 ]
 
 function Sidebar() {
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut()
+    } catch (error) {
+      console.log('Supabase signOut error:', error)
+    } finally {
+      // Always redirect to login regardless
+      navigate('/')
+    }
+  }
+
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-gray-800 border-r border-gray-700 flex flex-col">
 
@@ -46,14 +61,34 @@ function Sidebar() {
         ))}
       </nav>
 
-      {/* Logout */}
-      <div className="px-4 py-6 border-t border-gray-700">
-        <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-gray-700 hover:text-white transition-colors w-full">
+      {/* Bottom section */}
+      <div className="px-4 py-6 border-t border-gray-700 space-y-1">
+
+        {/* Profile link */}
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+              isActive
+                ? 'bg-purple-600 text-white'
+                : 'text-gray-400 hover:bg-gray-700 hover:text-white'
+            }`
+          }
+        >
+          <User size={20} />
+          Profile
+        </NavLink>
+
+        {/* Logout */}
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-gray-700 hover:text-white transition-colors w-full"
+        >
           <LogOut size={20} />
           Sign out
         </button>
-      </div>
 
+      </div>
     </aside>
   )
 }

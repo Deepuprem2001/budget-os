@@ -20,7 +20,7 @@ const useBudgetStore = create((set, get) => ({
     transactions: [
       {
         ...transaction,
-        id: Date.now().toString(),
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
         user_id: state.user.id,
         created_at: new Date().toISOString(),
       },
