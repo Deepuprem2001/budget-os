@@ -11,7 +11,7 @@ export const mockTransactions = [
     id: '1',
     user_id: 'mock-user-123',
     type: 'income',
-    amount: 3500,
+    amount: 1800,
     category: 'Salary',
     description: 'Monthly salary',
     date: '2026-03-01',
