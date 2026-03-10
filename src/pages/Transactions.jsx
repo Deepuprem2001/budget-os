@@ -40,22 +40,17 @@ function Transactions() {
       <div className="space-y-6">
 
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-white">Transactions</h1>
             <p className="text-gray-400 mt-1">
               Showing {filteredTransactions.length} of {totalThisMonth} transactions
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <MonthFilter />
             <button
-              onClick={() =>
-                exportToCSV(
-                  filteredTransactions,
-                  `transactions-${filterYear}-${String(filterMonth).padStart(2, '0')}.csv`
-                )
-              }
+              onClick={() => exportToCSV(filteredTransactions, `transactions-${filterYear}-${String(filterMonth).padStart(2, '0')}.csv`)}
               disabled={filteredTransactions.length === 0}
               className="flex items-center gap-2 bg-gray-700/60 hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed text-gray-300 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors border border-gray-700"
             >

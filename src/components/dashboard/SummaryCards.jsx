@@ -17,8 +17,7 @@ function SummaryCards() {
   const savingsRate = income > 0 ? Math.round((balance / income) * 100) : 0
 
   return (
-    <div className="grid grid-cols-3 gap-6">
-
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
       {/* Total Income */}
       <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-emerald-500/20 to-emerald-900/10 border border-emerald-500/20">
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -translate-y-1/2 translate-x-1/2" />

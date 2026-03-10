@@ -71,7 +71,7 @@ function Budgets() {
         </div>
 
         {/* Summary bar */}
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
           <div className="bg-gray-800/40 border border-gray-700/60 rounded-2xl p-5">
             <p className="text-gray-500 text-xs mb-1">Total Budgeted</p>
             <p className="text-white text-2xl font-bold">{formatCurrency(totalBudgeted)}</p>
@@ -91,7 +91,7 @@ function Budgets() {
         {/* Budget cards grid */}
         <div>
           <h2 className="text-white font-semibold mb-4">Expense Categories</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {CATEGORIES.expense.map((category) => (
               <BudgetCard
                 key={category}
