@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
+import Transactions from './pages/Transactions'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/layout/ProtectedRoute'
 
@@ -17,7 +18,7 @@ function App() {
       } />
       <Route path="/transactions" element={
         <ProtectedRoute>
-          <Dashboard />
+          <Transactions />
         </ProtectedRoute>
       } />
       <Route path="/budgets" element={

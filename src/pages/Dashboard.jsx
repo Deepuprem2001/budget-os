@@ -1,6 +1,7 @@
 import Layout from '../components/layout/Layout'
 import SummaryCards from '../components/dashboard/SummaryCards'
 import MonthFilter from '../components/layout/MonthFilter'
+import RecentTransactions from '../components/dashboard/RecentTransactions'
 
 function Dashboard() {
   return (
@@ -14,6 +15,7 @@ function Dashboard() {
           <MonthFilter />
         </div>
         <SummaryCards />
+        <RecentTransactions />
       </div>
     </Layout>
   )
