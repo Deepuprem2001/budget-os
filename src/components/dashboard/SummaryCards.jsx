@@ -3,6 +3,9 @@ import { formatCurrency } from '../../lib/utils'
 import { TrendingUp, TrendingDown, Wallet } from 'lucide-react'
 
 function SummaryCards() {
+  const filterMonth = useBudgetStore((state) => state.filterMonth)
+  const filterYear = useBudgetStore((state) => state.filterYear)
+
   const getTotalIncome = useBudgetStore((state) => state.getTotalIncome)
   const getTotalExpenses = useBudgetStore((state) => state.getTotalExpenses)
   const getBalance = useBudgetStore((state) => state.getBalance)

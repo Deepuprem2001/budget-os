@@ -3,6 +3,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Transactions from './pages/Transactions'
+import Budgets from './pages/Budgets'
+import Analytics from './pages/Analytics'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/layout/ProtectedRoute'
 
@@ -23,12 +25,12 @@ function App() {
       } />
       <Route path="/budgets" element={
         <ProtectedRoute>
-          <Dashboard />
+          <Budgets />
         </ProtectedRoute>
       } />
       <Route path="/analytics" element={
         <ProtectedRoute>
-          <Dashboard />
+          <Analytics />
         </ProtectedRoute>
       } />
       <Route path="*" element={<NotFound />} />

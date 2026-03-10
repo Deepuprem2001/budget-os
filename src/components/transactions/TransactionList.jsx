@@ -6,6 +6,9 @@ import { ArrowUpRight, ArrowDownRight, Pencil, Trash2 } from 'lucide-react'
 import TransactionForm from './TransactionForm'
 
 function TransactionList() {
+  const filterMonth = useBudgetStore((state) => state.filterMonth)
+  const filterYear = useBudgetStore((state) => state.filterYear)
+
   const getFilteredTransactions = useBudgetStore(
     (state) => state.getFilteredTransactions
   )

@@ -5,6 +5,8 @@ import { CATEGORY_COLORS } from '../../types/index'
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
 
 function RecentTransactions() {
+  const filterMonth = useBudgetStore((state) => state.filterMonth)
+  const filterYear = useBudgetStore((state) => state.filterYear)
   const getFilteredTransactions = useBudgetStore(
     (state) => state.getFilteredTransactions
   )
