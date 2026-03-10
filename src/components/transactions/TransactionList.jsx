@@ -5,7 +5,7 @@ import { CATEGORY_COLORS } from '../../types/index'
 import { ArrowUpRight, ArrowDownRight, Pencil, Trash2 } from 'lucide-react'
 import TransactionForm from './TransactionForm'
 
-function TransactionList() {
+function TransactionList({ transactions: propTransactions }) {
   const filterMonth = useBudgetStore((state) => state.filterMonth)
   const filterYear = useBudgetStore((state) => state.filterYear)
 
@@ -17,7 +17,7 @@ function TransactionList() {
   const [editTransaction, setEditTransaction] = useState(null)
   const [deleteId, setDeleteId] = useState(null)
 
-  const transactions = getFilteredTransactions()
+  const transactions = propTransactions ?? getFilteredTransactions()
 
   return (
     <div className="bg-gray-800/40 border border-gray-700/60 rounded-2xl">

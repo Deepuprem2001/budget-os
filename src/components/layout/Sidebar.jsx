@@ -6,8 +6,11 @@ import {
   BarChart3,
   LogOut,
   User,
+  Sun,
+  Moon,
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
+import { useTheme } from '../../hooks/useTheme'
 
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -18,6 +21,7 @@ const navItems = [
 
 function Sidebar() {
   const navigate = useNavigate()
+  const { theme, toggleTheme } = useTheme()
 
   const handleLogout = async () => {
     try {
@@ -25,7 +29,6 @@ function Sidebar() {
     } catch (error) {
       console.log('Supabase signOut error:', error)
     } finally {
-      // Always redirect to login regardless
       navigate('/')
     }
   }
@@ -63,6 +66,15 @@ function Sidebar() {
 
       {/* Bottom section */}
       <div className="px-4 py-6 border-t border-gray-700 space-y-1">
+
+        {/* Theme toggle */}
+        <button
+          onClick={toggleTheme}
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-gray-700 hover:text-white transition-colors w-full"
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+        </button>
 
         {/* Profile link */}
         <NavLink

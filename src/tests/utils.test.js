@@ -6,6 +6,7 @@ import {
   getMonths,
   getYears,
   getPercentage,
+  exportToCSV,
 } from '../lib/utils'
 
 describe('formatCurrency', () => {
@@ -96,5 +97,11 @@ describe('getPercentage', () => {
 
   it('handles 100 percent', () => {
     expect(getPercentage(100, 100)).toBe(100)
+  })
+})
+
+describe('exportToCSV', () => {
+  it('does not throw when transactions are empty', () => {
+    expect(() => exportToCSV([])).not.toThrow()
   })
 })
