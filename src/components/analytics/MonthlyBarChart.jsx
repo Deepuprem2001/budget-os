@@ -32,9 +32,9 @@ function MonthlyBarChart() {
       .reduce((sum, t) => sum + t.amount, 0)
 
     const expenses = monthTransactions
-      .filter((t) => t.type === 'expense')
+      .filter((t) => t.type === 'expense' && t.category !== 'Savings')
       .reduce((sum, t) => sum + t.amount, 0)
-
+  
     return { month, income, expenses }
   })
 

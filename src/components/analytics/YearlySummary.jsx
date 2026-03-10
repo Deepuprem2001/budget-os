@@ -16,8 +16,8 @@ function YearlySummary() {
     .reduce((sum, t) => sum + t.amount, 0)
 
   const totalExpenses = yearlyTransactions
-    .filter((t) => t.type === 'expense')
-    .reduce((sum, t) => sum + t.amount, 0)
+  .filter((t) => t.type === 'expense' && t.category !== 'Savings')
+  .reduce((sum, t) => sum + t.amount, 0)
 
   const netSavings = totalIncome - totalExpenses
 

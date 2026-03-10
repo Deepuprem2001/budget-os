@@ -22,7 +22,7 @@ function ExpensePieChart() {
 
   // Build pie data from expenses
   const data = transactions
-    .filter((t) => t.type === 'expense')
+    .filter((t) => t.type === 'expense' && t.category !== 'Savings')
     .reduce((acc, t) => {
       const existing = acc.find((item) => item.name === t.category)
       if (existing) {

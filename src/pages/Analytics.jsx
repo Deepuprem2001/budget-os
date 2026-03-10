@@ -4,6 +4,9 @@ import ExpensePieChart from '../components/analytics/ExpensePieChart'
 import MonthlyBarChart from '../components/analytics/MonthlyBarChart'
 import BalanceLineChart from '../components/analytics/BalanceLineChart'
 import YearlySummary from '../components/analytics/YearlySummary'
+import BudgetActualChart from '../components/analytics/BudgetActualChart'
+import CategoryTrendsChart from '../components/analytics/CategoryTrendsChart'
+import YearOverYearChart from '../components/analytics/YearOverYearChart'
 
 function Analytics() {
   return (
@@ -32,6 +35,12 @@ function Analytics() {
         </div>
         <BalanceLineChart />
         </div>
+
+        <BudgetActualChart />
+
+        <YearOverYearChart />
+
+        <CategoryTrendsChart />
 
         {/* Full width bar chart */}
         <MonthlyBarChart />

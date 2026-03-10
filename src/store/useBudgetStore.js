@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { mockTransactions, mockBudgets, mockUser } from '../lib/mockData'
+import { mockTransactions, mockBudgets, mockUser, mockGoals, mockDebts } from '../lib/mockData'
 
 const useBudgetStore = create((set, get) => ({
   // State
@@ -10,6 +10,9 @@ const useBudgetStore = create((set, get) => ({
   error: null,
   filterMonth: new Date().getMonth() + 1,
   filterYear: new Date().getFullYear(),
+  monthlyLimits: [],
+  goals: mockGoals,
+  debts: mockDebts,
 
   // Filter actions
   setFilterMonth: (month) => set({ filterMonth: month }),
@@ -88,16 +91,80 @@ const useBudgetStore = create((set, get) => ({
       .reduce((sum, t) => sum + t.amount, 0)
   },
 
-  getTotalExpenses: () => {
-    const filtered = get().getFilteredTransactions()
-    return filtered
-      .filter((t) => t.type === 'expense')
-      .reduce((sum, t) => sum + t.amount, 0)
-  },
+getTotalExpenses: () => {
+  const { transactions, filterMonth, filterYear } = get()
+  return transactions
+    .filter((t) => {
+      const date = new Date(t.date)
+      return (
+        t.type === 'expense' &&
+        t.category !== 'Savings' &&
+        date.getMonth() + 1 === filterMonth &&
+        date.getFullYear() === filterYear
+      )
+    })
+    .reduce((sum, t) => sum + t.amount, 0)
+},
 
   getBalance: () => {
     return get().getTotalIncome() - get().getTotalExpenses()
   },
+
+  setMonthlyLimit: (month, year, limit) => set((state) => {
+  const exists = state.monthlyLimits.find(
+    (l) => l.month === month && l.year === year
+  )
+  if (exists) {
+    return {
+      monthlyLimits: state.monthlyLimits.map((l) =>
+        l.month === month && l.year === year ? { ...l, limit } : l
+      ),
+    }
+  }
+  return {
+    monthlyLimits: [...state.monthlyLimits, { month, year, limit }],
+  }
+}),
+
+addGoal: (goal) => set((state) => ({
+  goals: [
+    {
+      ...goal,
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      createdAt: new Date().toISOString(),
+      completed: false,
+    },
+    ...state.goals,
+  ],
+})),
+
+updateGoal: (id, updates) => set((state) => ({
+  goals: state.goals.map((g) => g.id === id ? { ...g, ...updates } : g),
+})),
+
+deleteGoal: (id) => set((state) => ({
+  goals: state.goals.filter((g) => g.id !== id),
+})),
+
+addDebt: (debt) => set((state) => ({
+  debts: [
+    {
+      ...debt,
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      createdAt: new Date().toISOString(),
+    },
+    ...state.debts,
+  ],
+})),
+
+updateDebt: (id, updates) => set((state) => ({
+  debts: state.debts.map((d) => d.id === id ? { ...d, ...updates } : d),
+})),
+
+deleteDebt: (id) => set((state) => ({
+  debts: state.debts.filter((d) => d.id !== id),
+})),
+
 }))
 
 export default useBudgetStore

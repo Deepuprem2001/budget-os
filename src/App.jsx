@@ -8,6 +8,8 @@ import Analytics from './pages/Analytics'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/layout/ProtectedRoute'
+import Goals from './pages/Goals'
+import Debts from './pages/Debts'
 
 function App() {
   return (
@@ -32,6 +34,16 @@ function App() {
       <Route path="/analytics" element={
         <ProtectedRoute>
           <Analytics />
+        </ProtectedRoute>
+      } />
+      <Route path="/debts" element={
+        <ProtectedRoute>
+          <Debts />
+        </ProtectedRoute>
+      } />
+      <Route path="/goals" element={
+        <ProtectedRoute>
+          <Goals />
         </ProtectedRoute>
       } />
       <Route path="/profile" element={

@@ -2,6 +2,9 @@ import Layout from '../components/layout/Layout'
 import SummaryCards from '../components/dashboard/SummaryCards'
 import MonthFilter from '../components/layout/MonthFilter'
 import RecentTransactions from '../components/dashboard/RecentTransactions'
+import SpendingForecast from '../components/dashboard/SpendingForecast'
+import SmartInsights from '../components/dashboard/SmartInsights'
+import FinancialHealthScore from '../components/dashboard/FinancialHealthScore'
 
 function Dashboard() {
   return (
@@ -15,7 +18,15 @@ function Dashboard() {
           <MonthFilter />
         </div>
         <SummaryCards />
-        <RecentTransactions />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <SpendingForecast />
+          <RecentTransactions />
+        </div>
+        {/* Health Score + Smart Insights side by side */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <FinancialHealthScore />
+        <SmartInsights />
+      </div>
       </div>
     </Layout>
   )

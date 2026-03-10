@@ -11,6 +11,8 @@ import {
   Moon,
   Menu,
   X,
+  Target,
+  CreditCard,
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 import { useTheme } from '../../hooks/useTheme'
@@ -20,6 +22,8 @@ const navItems = [
   { to: '/transactions', icon: ArrowLeftRight, label: 'Transactions' },
   { to: '/budgets', icon: PiggyBank, label: 'Budgets' },
   { to: '/analytics', icon: BarChart3, label: 'Analytics' },
+  { to: '/debts', icon: CreditCard, label: 'Debts' },
+  { to: '/goals', icon: Target, label: 'Goals'},
 ]
 
 function Sidebar() {
