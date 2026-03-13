@@ -4,6 +4,7 @@ import DebtCard from '../components/debt/DebtCard'
 import useBudgetStore from '../store/useBudgetStore'
 import { formatCurrency } from '../lib/utils'
 import { Plus, X } from 'lucide-react'
+import PageWrapper from '../components/ui/PageWrapper'
 
 const DEBT_TYPES = [
   'Credit Card',
@@ -77,6 +78,7 @@ function Debts() {
 
   return (
     <Layout>
+      <PageWrapper>
       <div className="space-y-8">
 
         {/* Header */}
@@ -328,7 +330,7 @@ function Debts() {
           </div>
         </div>
       )}
-
+      </PageWrapper>
     </Layout>
   )
 }

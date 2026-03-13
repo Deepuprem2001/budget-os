@@ -3,6 +3,8 @@ import useBudgetStore from '../../store/useBudgetStore'
 import { CATEGORIES } from '../../types/index'
 import { X } from 'lucide-react'
 import { useToast } from '../../context/ToastContext'
+import { motion, AnimatePresence } from 'framer-motion'
+import { scaleIn } from '../../lib/animations'
 
 const defaultForm = {
   description: '',
@@ -62,6 +64,13 @@ function TransactionForm({ onClose, editTransaction }) {
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <motion.div
+          variants={scaleIn}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="bg-gray-800 border border-gray-700 rounded-2xl w-full max-w-md"
+        >
       <div className="bg-gray-800 border border-gray-700 rounded-2xl w-full max-w-md">
 
         {/* Header */}
@@ -187,6 +196,7 @@ function TransactionForm({ onClose, editTransaction }) {
 
         </div>
       </div>
+      </motion.div>
     </div>
   )
 }

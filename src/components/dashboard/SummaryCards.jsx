@@ -1,11 +1,10 @@
+import { motion } from 'framer-motion'
 import useBudgetStore from '../../store/useBudgetStore'
 import { formatCurrency } from '../../lib/utils'
 import { TrendingUp, TrendingDown, Wallet } from 'lucide-react'
+import { containerVariants, cardVariants } from '../../lib/animations'
 
 function SummaryCards() {
-  const filterMonth = useBudgetStore((state) => state.filterMonth)
-  const filterYear = useBudgetStore((state) => state.filterYear)
-
   const getTotalIncome = useBudgetStore((state) => state.getTotalIncome)
   const getTotalExpenses = useBudgetStore((state) => state.getTotalExpenses)
   const getBalance = useBudgetStore((state) => state.getBalance)
@@ -17,9 +16,17 @@ function SummaryCards() {
   const savingsRate = income > 0 ? Math.round((balance / income) * 100) : 0
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+    <motion.div
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
+    >
       {/* Total Income */}
-      <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-emerald-500/20 to-emerald-900/10 border border-emerald-500/20">
+      <motion.div
+        variants={cardVariants}
+        className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-emerald-500/20 to-emerald-900/10 border border-emerald-500/20"
+      >
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -translate-y-1/2 translate-x-1/2" />
         <div className="relative">
           <div className="flex items-center justify-between mb-6">
@@ -40,10 +47,13 @@ function SummaryCards() {
             Saving {savingsRate}% of income
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Total Expenses */}
-      <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-rose-500/20 to-rose-900/10 border border-rose-500/20">
+      <motion.div
+        variants={cardVariants}
+        className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-rose-500/20 to-rose-900/10 border border-rose-500/20"
+      >
         <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full -translate-y-1/2 translate-x-1/2" />
         <div className="relative">
           <div className="flex items-center justify-between mb-6">
@@ -64,14 +74,17 @@ function SummaryCards() {
             {income > 0 ? Math.round((expenses / income) * 100) : 0}% of total income
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Net Balance */}
-      <div className={`relative overflow-hidden rounded-2xl p-6 border ${
-        balance >= 0
-          ? 'bg-gradient-to-br from-violet-500/20 to-violet-900/10 border-violet-500/20'
-          : 'bg-gradient-to-br from-rose-500/20 to-rose-900/10 border-rose-500/20'
-      }`}>
+      <motion.div
+        variants={cardVariants}
+        className={`relative overflow-hidden rounded-2xl p-6 border ${
+          balance >= 0
+            ? 'bg-gradient-to-br from-violet-500/20 to-violet-900/10 border-violet-500/20'
+            : 'bg-gradient-to-br from-rose-500/20 to-rose-900/10 border-rose-500/20'
+        }`}
+      >
         <div className={`absolute top-0 right-0 w-32 h-32 rounded-full -translate-y-1/2 translate-x-1/2 ${
           balance >= 0 ? 'bg-violet-500/10' : 'bg-rose-500/10'
         }`} />
@@ -102,9 +115,9 @@ function SummaryCards() {
             {balance >= 0 ? 'You are on track this month' : 'Reduce expenses to balance'}
           </p>
         </div>
-      </div>
+      </motion.div>
 
-    </div>
+    </motion.div>
   )
 }
 

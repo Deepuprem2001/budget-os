@@ -12,6 +12,7 @@ import {
   Save,
   Camera,
 } from 'lucide-react'
+import PageWrapper from '../components/ui/PageWrapper'
 
 function Profile() {
   const { user } = useAuth()
@@ -120,6 +121,7 @@ function Profile() {
 
   return (
     <Layout>
+      <PageWrapper>
       <div className="max-w-2xl space-y-6">
 
         {/* Header */}
@@ -318,6 +320,7 @@ function Profile() {
         </div>
 
       </div>
+      </PageWrapper>
     </Layout>
   )
 }

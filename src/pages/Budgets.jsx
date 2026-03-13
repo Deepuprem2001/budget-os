@@ -5,6 +5,7 @@ import MonthFilter from '../components/layout/MonthFilter'
 import { CATEGORIES } from '../types/index'
 import { formatCurrency } from '../lib/utils'
 import { useToast } from '../context/ToastContext'
+import PageWrapper from '../components/ui/PageWrapper'
 
 function Budgets() {
   const getFilteredTransactions = useBudgetStore(
@@ -62,6 +63,7 @@ function Budgets() {
 
   return (
     <Layout>
+      <PageWrapper>
       <div className="space-y-8">
 
         {/* Header */}
@@ -108,6 +110,7 @@ function Budgets() {
         </div>
 
       </div>
+      </PageWrapper>
     </Layout>
   )
 }

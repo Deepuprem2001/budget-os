@@ -10,6 +10,7 @@ import YearOverYearChart from '../components/analytics/YearOverYearChart'
 import EmptyState from '../components/ui/EmptyState'
 import useBudgetStore from '../store/useBudgetStore'
 import { useNavigate } from 'react-router-dom'
+import PageWrapper from '../components/ui/PageWrapper'
 
 function Analytics() {
   const navigate = useNavigate()
@@ -18,6 +19,7 @@ function Analytics() {
 
   return (
     <Layout>
+      <PageWrapper>
       <div className="space-y-8">
 
         {/* Header */}
@@ -59,6 +61,7 @@ function Analytics() {
         )}
 
       </div>
+      </PageWrapper>
     </Layout>
   )
 }

@@ -9,6 +9,7 @@ import { CATEGORIES } from '../types/index'
 import { exportToCSV } from '../lib/utils'
 import { Plus, Download } from 'lucide-react'
 import EmptyState from '../components/ui/EmptyState'
+import PageWrapper from '../components/ui/PageWrapper'
 
 function Transactions() {
   const getFilteredTransactions = useBudgetStore(
@@ -38,6 +39,7 @@ function Transactions() {
 
   return (
     <Layout>
+      <PageWrapper>
       <div className="space-y-6">
 
         {/* Header */}
@@ -105,6 +107,7 @@ function Transactions() {
       {showForm && (
         <TransactionForm onClose={() => setShowForm(false)} />
       )}
+      </PageWrapper>
     </Layout>
   )
 }

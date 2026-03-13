@@ -4,6 +4,7 @@ import GoalCard from '../components/goals/GoalCard'
 import useBudgetStore from '../store/useBudgetStore'
 import { formatCurrency } from '../lib/utils'
 import { Plus, X, Target } from 'lucide-react'
+import PageWrapper from '../components/ui/PageWrapper'
 
 const GOAL_EMOJIS = ['✈️', '🛡️', '💻', '🏠', '🚗', '📚', '💍', '🏋️', '🎓', '🌴', '💰', '🎯']
 
@@ -47,6 +48,7 @@ function Goals() {
 
   return (
     <Layout>
+      <PageWrapper>
       <div className="space-y-8">
 
         {/* Header */}
@@ -239,7 +241,7 @@ function Goals() {
           </div>
         </div>
       )}
-
+      </PageWrapper>
     </Layout>
   )
 }

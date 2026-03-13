@@ -8,6 +8,7 @@ import FinancialHealthScore from '../components/dashboard/FinancialHealthScore'
 import EmptyState from '../components/ui/EmptyState'
 import useBudgetStore from '../store/useBudgetStore'
 import { useNavigate } from 'react-router-dom'
+import PageWrapper from '../components/ui/PageWrapper'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -20,6 +21,7 @@ function Dashboard() {
 
   return (
     <Layout>
+      <PageWrapper>
       <div className="space-y-8">
 
         {/* Header */}
@@ -67,6 +69,7 @@ function Dashboard() {
         )}
 
       </div>
+      </PageWrapper>
     </Layout>
   )
 }
