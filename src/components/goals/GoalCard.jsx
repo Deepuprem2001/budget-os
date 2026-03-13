@@ -2,6 +2,7 @@ import { Trash2, CheckCircle, Plus, Calendar } from 'lucide-react'
 import { formatCurrency, getPercentage } from '../../lib/utils'
 import useBudgetStore from '../../store/useBudgetStore'
 import { useState } from 'react'
+import { useToast } from '../../context/ToastContext'
 
 function GoalCard({ goal }) {
   const updateGoal = useBudgetStore((state) => state.updateGoal)
@@ -13,6 +14,7 @@ function GoalCard({ goal }) {
   const addTransaction = useBudgetStore((state) => state.addTransaction)
   const filterMonth = useBudgetStore((state) => state.filterMonth)
   const filterYear = useBudgetStore((state) => state.filterYear)
+  const { addToast } = useToast()
 
   const percentage = getPercentage(goal.currentAmount, goal.targetAmount)
   const remaining = goal.targetAmount - goal.currentAmount
@@ -50,6 +52,7 @@ function GoalCard({ goal }) {
 
     setFundAmount('')
     setShowAddFunds(false)
+    addToast({ message: `£${amount} added to ${goal.name} 🎯`, type: 'success' })
   }
 }
 
@@ -211,7 +214,9 @@ function GoalCard({ goal }) {
                 Cancel
               </button>
               <button
-                onClick={() => deleteGoal(goal.id)}
+                onClick={() => {deleteGoal(goal.id)
+                  addToast({ message: 'Goal deleted', type: 'success' })
+                }}
                 className="flex-1 py-2.5 rounded-xl text-sm font-medium text-white bg-rose-500/80 hover:bg-rose-500 transition-colors"
               >
                 Delete

@@ -4,10 +4,13 @@ import { formatCurrency, formatDate } from '../../lib/utils'
 import { CATEGORY_COLORS } from '../../types/index'
 import { ArrowUpRight, ArrowDownRight, Pencil, Trash2 } from 'lucide-react'
 import TransactionForm from './TransactionForm'
+import { useToast } from '../../context/ToastContext'
 
 function TransactionList({ transactions: propTransactions }) {
   const filterMonth = useBudgetStore((state) => state.filterMonth)
   const filterYear = useBudgetStore((state) => state.filterYear)
+
+  const { addToast } = useToast()
 
   const getFilteredTransactions = useBudgetStore(
     (state) => state.getFilteredTransactions
@@ -137,6 +140,7 @@ function TransactionList({ transactions: propTransactions }) {
               <button
                 onClick={() => {
                   deleteTransaction(deleteId)
+                  addToast({ message: 'Transaction deleted', type: 'success' })
                   setDeleteId(null)
                 }}
                 className="flex-1 py-2.5 rounded-xl text-sm font-medium text-white bg-rose-500/80 hover:bg-rose-500 transition-colors"

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import useBudgetStore from '../../store/useBudgetStore'
 import { CATEGORIES } from '../../types/index'
 import { X } from 'lucide-react'
+import { useToast } from '../../context/ToastContext'
 
 const defaultForm = {
   description: '',
@@ -14,6 +15,7 @@ const defaultForm = {
 function TransactionForm({ onClose, editTransaction }) {
   const addTransaction = useBudgetStore((state) => state.addTransaction)
   const updateTransaction = useBudgetStore((state) => state.updateTransaction)
+  const { addToast } = useToast()
 
   const [form, setForm] = useState(
     editTransaction
@@ -49,8 +51,10 @@ function TransactionForm({ onClose, editTransaction }) {
 
     if (editTransaction) {
       updateTransaction(editTransaction.id, data)
+      addToast({ message: 'Transaction updated', type: 'success' })
     } else {
       addTransaction(data)
+      addToast({ message: 'Transaction added successfully', type: 'success' })
     }
 
     onClose()

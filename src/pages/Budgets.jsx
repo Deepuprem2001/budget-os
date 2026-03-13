@@ -4,6 +4,7 @@ import BudgetCard from '../components/budgets/BudgetCard'
 import MonthFilter from '../components/layout/MonthFilter'
 import { CATEGORIES } from '../types/index'
 import { formatCurrency } from '../lib/utils'
+import { useToast } from '../context/ToastContext'
 
 function Budgets() {
   const getFilteredTransactions = useBudgetStore(
@@ -13,6 +14,7 @@ function Budgets() {
   const filterMonth = useBudgetStore((state) => state.filterMonth)
   const filterYear = useBudgetStore((state) => state.filterYear)
   const setBudget = useBudgetStore((state) => state.setBudget)
+  const { addToast } = useToast()
 
   const transactions = getFilteredTransactions()
 
@@ -41,6 +43,7 @@ function Budgets() {
       month: filterMonth,
       year: filterYear,
     })
+    addToast({ message: 'Budget saved', type: 'success' })
   }
 
   // Summary stats

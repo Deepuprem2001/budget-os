@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { Trash2, Plus } from 'lucide-react'
 import useBudgetStore from '../../store/useBudgetStore'
 import { formatCurrency, getPercentage } from '../../lib/utils'
+import { useToast } from '../../context/ToastContext'
 
 function DebtCard({ debt }) {
   const updateDebt = useBudgetStore((state) => state.updateDebt)
   const deleteDebt = useBudgetStore((state) => state.deleteDebt)
   const addTransaction = useBudgetStore((state) => state.addTransaction)
+  const { addToast } = useToast()
 
   const [showPayment, setShowPayment] = useState(false)
   const [paymentAmount, setPaymentAmount] = useState('')
@@ -47,6 +49,7 @@ function DebtCard({ debt }) {
 
     setPaymentAmount('')
     setShowPayment(false)
+    addToast({ message: `Payment of ${formatCurrency(value)} recorded 💳`, type: 'success' })
   }
 
   return (
@@ -198,7 +201,10 @@ function DebtCard({ debt }) {
                 Cancel
               </button>
               <button
-                onClick={() => deleteDebt(debt.id)}
+                onClick={() => {
+                  deleteDebt(debt.id)
+                  addToast({ message: 'Debt deleted', type: 'success' })
+                }}
                 className="flex-1 py-2.5 rounded-xl text-sm font-medium text-white bg-rose-500/80 hover:bg-rose-500 transition-colors"
               >
                 Delete
