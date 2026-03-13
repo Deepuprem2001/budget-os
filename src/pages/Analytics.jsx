@@ -7,43 +7,56 @@ import YearlySummary from '../components/analytics/YearlySummary'
 import BudgetActualChart from '../components/analytics/BudgetActualChart'
 import CategoryTrendsChart from '../components/analytics/CategoryTrendsChart'
 import YearOverYearChart from '../components/analytics/YearOverYearChart'
+import EmptyState from '../components/ui/EmptyState'
+import useBudgetStore from '../store/useBudgetStore'
+import { useNavigate } from 'react-router-dom'
 
 function Analytics() {
+  const navigate = useNavigate()
+  const transactions = useBudgetStore((state) => state.transactions)
+  const hasData = transactions.length > 0
+
   return (
     <Layout>
       <div className="space-y-8">
 
         {/* Header */}
         <div className="flex items-center justify-between">
-        <div>
+          <div>
             <h1 className="text-2xl font-bold text-white">Analytics</h1>
             <p className="text-gray-400 mt-1">Visualise your financial data</p>
-        </div>
+          </div>
         </div>
 
-        {/* Yearly summary */}
-        <YearlySummary />
+        {!hasData ? (
+          <EmptyState
+            emoji="📊"
+            title="No data to analyse yet"
+            message="Add some transactions first and your charts will automatically populate with your spending patterns and trends."
+            action={() => navigate('/transactions')}
+            actionLabel="Add transactions"
+          />
+        ) : (
+          <>
+            <YearlySummary />
 
-        {/* Charts row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div>
-            <div className="flex items-center justify-between mb-4">
-            <p className="text-white font-semibold">This Month's Breakdown</p>
-            <MonthFilter />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-white font-semibold">This Month's Breakdown</p>
+                  <MonthFilter />
+                </div>
+                <ExpensePieChart />
+              </div>
+              <BalanceLineChart />
             </div>
-            <ExpensePieChart />
-        </div>
-        <BalanceLineChart />
-        </div>
 
-        <BudgetActualChart />
-
-        <YearOverYearChart />
-
-        <CategoryTrendsChart />
-
-        {/* Full width bar chart */}
-        <MonthlyBarChart />
+            <BudgetActualChart />
+            <YearOverYearChart />
+            <CategoryTrendsChart />
+            <MonthlyBarChart />
+          </>
+        )}
 
       </div>
     </Layout>

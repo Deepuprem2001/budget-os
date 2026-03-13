@@ -8,6 +8,7 @@ import useBudgetStore from '../store/useBudgetStore'
 import { CATEGORIES } from '../types/index'
 import { exportToCSV } from '../lib/utils'
 import { Plus, Download } from 'lucide-react'
+import EmptyState from '../components/ui/EmptyState'
 
 function Transactions() {
   const getFilteredTransactions = useBudgetStore(
@@ -78,7 +79,25 @@ function Transactions() {
         />
 
         {/* Transaction list */}
-        <TransactionList transactions={filteredTransactions} />
+        {filteredTransactions.length === 0 ? (
+          search || filterType !== 'all' || filterCategory !== 'all' ? (
+            <EmptyState
+              emoji="🔍"
+              title="No transactions found"
+              message="No transactions match your search or filters. Try adjusting or clearing your filters."
+            />
+          ) : (
+            <EmptyState
+              emoji="📭"
+              title="No transactions this month"
+              message="You haven't added any transactions for this month yet."
+              action={() => setShowForm(true)}
+              actionLabel="Add your first transaction"
+            />
+          )
+        ) : (
+          <TransactionList transactions={filteredTransactions} />
+        )}
 
       </div>
 
