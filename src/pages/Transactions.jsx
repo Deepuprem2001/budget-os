@@ -10,6 +10,7 @@ import { exportToCSV } from '../lib/utils'
 import { Plus, Download } from 'lucide-react'
 import EmptyState from '../components/ui/EmptyState'
 import PageWrapper from '../components/ui/PageWrapper'
+import RecurringTransactions from '../components/transactions/RecurringTransactions'
 
 function Transactions() {
   const getFilteredTransactions = useBudgetStore(
@@ -99,6 +100,8 @@ function Transactions() {
         ) : (
           <TransactionList transactions={filteredTransactions} />
         )}
+
+        <RecurringTransactions />
 
       </div>
 

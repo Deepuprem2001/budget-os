@@ -21,6 +21,7 @@ const useBudgetStore = create((set, get) => ({
     healthScore: true,
     smartInsights: true,
   },
+  recurringTransactions: [],
 
   // Filter actions
   setFilterMonth: (month) => set({ filterMonth: month }),
@@ -219,6 +220,82 @@ toggleDashboardWidget: (widget) => set((state) => ({
     [widget]: !state.dashboardWidgets[widget],
   },
 })),
+
+addRecurringTransaction: (recurring) => set((state) => ({
+  recurringTransactions: [
+    {
+      ...recurring,
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      createdAt: new Date().toISOString(),
+      lastGenerated: null,
+    },
+    ...state.recurringTransactions,
+  ],
+})),
+
+deleteRecurringTransaction: (id) => set((state) => ({
+  recurringTransactions: state.recurringTransactions.filter((r) => r.id !== id),
+})),
+
+toggleRecurringTransaction: (id) => set((state) => ({
+  recurringTransactions: state.recurringTransactions.map((r) =>
+    r.id === id ? { ...r, active: !r.active } : r
+  ),
+})),
+
+// Checks all recurring transactions and generates any that are due
+processRecurringTransactions: () => set((state) => {
+  const today = new Date()
+  const newTransactions = []
+  const updatedRecurring = state.recurringTransactions.map((r) => {
+    if (!r.active) return r
+
+    const lastGen = r.lastGenerated ? new Date(r.lastGenerated) : null
+    const startDate = new Date(r.startDate)
+    let isDue = false
+
+    if (!lastGen) {
+      // Never generated — check if start date is today or in the past
+      isDue = startDate <= today
+    } else {
+      // Check based on frequency
+      if (r.frequency === 'weekly') {
+        const nextDue = new Date(lastGen)
+        nextDue.setDate(nextDue.getDate() + 7)
+        isDue = nextDue <= today
+      } else if (r.frequency === 'monthly') {
+        const nextDue = new Date(lastGen)
+        nextDue.setMonth(nextDue.getMonth() + 1)
+        isDue = nextDue <= today
+      } else if (r.frequency === 'yearly') {
+        const nextDue = new Date(lastGen)
+        nextDue.setFullYear(nextDue.getFullYear() + 1)
+        isDue = nextDue <= today
+      }
+    }
+
+    if (isDue) {
+      newTransactions.push({
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        user_id: state.user.id,
+        type: r.type,
+        amount: r.amount,
+        category: r.category,
+        description: `${r.description} (Auto)`,
+        date: today.toISOString().split('T')[0],
+        created_at: today.toISOString(),
+        isRecurring: true,
+      })
+      return { ...r, lastGenerated: today.toISOString() }
+    }
+    return r
+  })
+
+  return {
+    recurringTransactions: updatedRecurring,
+    transactions: [...newTransactions, ...state.transactions],
+  }
+}),
 
 }))
 
