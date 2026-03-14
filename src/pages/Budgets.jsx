@@ -16,6 +16,8 @@ function Budgets() {
   const filterYear = useBudgetStore((state) => state.filterYear)
   const setBudget = useBudgetStore((state) => state.setBudget)
   const { addToast } = useToast()
+  const getAllCategories = useBudgetStore((state) => state.getAllCategories)
+  const allCategories = getAllCategories()
 
   const transactions = getFilteredTransactions()
 
@@ -48,18 +50,16 @@ function Budgets() {
   }
 
   // Summary stats
-  const totalBudgeted = CATEGORIES.expense.reduce(
+  const totalBudgeted = allCategories.expense.reduce(
     (sum, cat) => sum + getBudgetAmount(cat), 0
   )
-  const totalSpent = CATEGORIES.expense.reduce(
+  const totalSpent = allCategories.expense.reduce(
     (sum, cat) => sum + getSpentAmount(cat), 0
   )
-  const overBudgetCount = CATEGORIES.expense.filter(
-    (cat) => {
-      const budget = getBudgetAmount(cat)
-      return budget > 0 && getSpentAmount(cat) > budget
-    }
-  ).length
+  const overBudgetCount = allCategories.expense.filter((cat) => {
+    const budget = getBudgetAmount(cat)
+    return budget > 0 && getSpentAmount(cat) > budget
+  }).length
 
   return (
     <Layout>
@@ -97,7 +97,7 @@ function Budgets() {
         <div>
           <h2 className="text-white font-semibold mb-4">Expense Categories</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {CATEGORIES.expense.map((category) => (
+            {allCategories.expense.map((category) => (
               <BudgetCard
                 key={category}
                 category={category}

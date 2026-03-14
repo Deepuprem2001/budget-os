@@ -18,6 +18,8 @@ function TransactionForm({ onClose, editTransaction }) {
   const addTransaction = useBudgetStore((state) => state.addTransaction)
   const updateTransaction = useBudgetStore((state) => state.updateTransaction)
   const { addToast } = useToast()
+  const getAllCategories = useBudgetStore((state) => state.getAllCategories)
+  const allCategories = getAllCategories()
 
   const [form, setForm] = useState(
     editTransaction
@@ -161,7 +163,7 @@ function TransactionForm({ onClose, editTransaction }) {
                 onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
                 className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
               >
-                {CATEGORIES[form.type].map((cat) => (
+                {allCategories[form.type].map((cat) => (
                   <option key={cat} value={cat} className="bg-gray-800">
                     {cat}
                   </option>

@@ -13,6 +13,7 @@ import {
   Camera,
 } from 'lucide-react'
 import PageWrapper from '../components/ui/PageWrapper'
+import CustomCategories from '../components/profile/CustomCategories'
 
 function Profile() {
   const { user } = useAuth()
@@ -265,6 +266,8 @@ function Profile() {
             Update password
           </button>
         </div>
+
+        <CustomCategories />
 
         {/* Danger Zone */}
         <div className="bg-gray-800/40 border border-rose-500/20 rounded-2xl p-6">

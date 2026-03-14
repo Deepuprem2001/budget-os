@@ -14,6 +14,13 @@ const useBudgetStore = create((set, get) => ({
   goals: mockGoals,
   debts: mockDebts,
   hasCompletedOnboarding: true,
+  customCategories: { income: [], expense: [], },
+  dashboardWidgets: {
+    spendingForecast: true,
+    recentTransactions: true,
+    healthScore: true,
+    smartInsights: true,
+  },
 
   // Filter actions
   setFilterMonth: (month) => set({ filterMonth: month }),
@@ -169,6 +176,48 @@ deleteDebt: (id) => set((state) => ({
 completeOnboarding: (profileData) => set((state) => ({
   hasCompletedOnboarding: true,
   user: { ...state.user, ...profileData },
+})),
+
+addCustomCategory: (type, name) => set((state) => {
+  const already = [
+    ...state.customCategories[type],
+  ].map((c) => c.toLowerCase())
+  if (already.includes(name.toLowerCase())) return state
+  return {
+    customCategories: {
+      ...state.customCategories,
+      [type]: [...state.customCategories[type], name],
+    },
+  }
+}),
+
+deleteCustomCategory: (type, name) => set((state) => ({
+  customCategories: {
+    ...state.customCategories,
+    [type]: state.customCategories[type].filter((c) => c !== name),
+  },
+})),
+
+getAllCategories: () => {
+  const { customCategories } = get()
+  return {
+    income: [
+      'Salary', 'Freelance', 'Investments', 'Rental', 'Business', 'Other Income',
+      ...customCategories.income,
+    ],
+    expense: [
+      'Housing', 'Food', 'Transport', 'Healthcare', 'Entertainment',
+      'Shopping', 'Utilities', 'Education', 'Travel', 'Other',
+      ...customCategories.expense,
+    ],
+  }
+},
+
+toggleDashboardWidget: (widget) => set((state) => ({
+  dashboardWidgets: {
+    ...state.dashboardWidgets,
+    [widget]: !state.dashboardWidgets[widget],
+  },
 })),
 
 }))
