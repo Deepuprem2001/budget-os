@@ -49,8 +49,8 @@ function Transactions() {
     await new Promise((resolve) => setTimeout(resolve, 300))
     await exportToPDF({
       elementId: 'pdf-report',
-      filename: `budgetos-${filterYear}-${String(filterMonth).padStart(2, '0')}.pdf`,
-      title: `BudgetOS Report — ${filterMonth}/${filterYear}`,
+      filename: `FinSight-${filterYear}-${String(filterMonth).padStart(2, '0')}.pdf`,
+      title: `FinSight Report — ${filterMonth}/${filterYear}`,
     })
     setExportingPDF(false)
   }

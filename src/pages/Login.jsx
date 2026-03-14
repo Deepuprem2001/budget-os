@@ -36,7 +36,7 @@ function Login() {
           <div className="inline-flex items-center justify-center w-12 h-12 accent-bg rounded-xl mb-4">
             <span className="text-white text-xl font-bold">₹</span>
           </div>
-          <h1 className="text-3xl font-bold text-white">BudgetOS</h1>
+          <h1 className="text-3xl font-bold text-white">FinSight</h1>
           <p className="text-gray-400 mt-2">Welcome back! Sign in to continue</p>
         </div>
 
