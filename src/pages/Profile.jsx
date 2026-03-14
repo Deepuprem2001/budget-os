@@ -144,7 +144,7 @@ function Profile() {
         {/* Avatar & Name */}
         <div className="bg-gray-800/40 border border-gray-700/60 rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-6">
-            <User size={18} className="text-violet-400" />
+            <User size={18} className="accent-text" />
             <h2 className="text-white font-semibold">Personal Info</h2>
           </div>
 
@@ -158,13 +158,13 @@ function Profile() {
                   className="w-20 h-20 rounded-2xl object-cover"
                 />
               ) : (
-                <div className="w-20 h-20 rounded-2xl bg-violet-600/30 border border-violet-500/30 flex items-center justify-center">
-                  <span className="text-violet-300 text-2xl font-bold">
+                <div className="w-20 h-20 rounded-2xl bg-gray-700/40 border border-gray-700 flex items-center justify-center">
+                  <span className="accent-text text-2xl font-bold">
                     {getInitials()}
                   </span>
                 </div>
               )}
-              <label className="absolute -bottom-2 -right-2 w-7 h-7 bg-violet-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-violet-700 transition-colors">
+              <label className="absolute -bottom-2 -right-2 w-7 h-7 accent-bg rounded-lg flex items-center justify-center cursor-pointer transition-colors">
                 <Camera size={13} className="text-white" />
                 <input
                   type="file"
@@ -189,7 +189,7 @@ function Profile() {
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+              className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus  transition-colors"
               placeholder="Your full name"
             />
           </div>
@@ -202,7 +202,7 @@ function Profile() {
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
-              className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+              className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus  transition-colors"
             >
               {CURRENCIES.map((c) => (
                 <option key={c.code} value={c.code} className="bg-gray-800">
@@ -215,7 +215,7 @@ function Profile() {
           <button
             onClick={handleUpdateProfile}
             disabled={loading}
-            className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-900 disabled:text-violet-400 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+            className="flex items-center gap-2 accent-bg disabled:opacity-50 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
           >
             <Save size={16} />
             Save changes
@@ -225,7 +225,7 @@ function Profile() {
         {/* Change Password */}
         <div className="bg-gray-800/40 border border-gray-700/60 rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-6">
-            <Lock size={18} className="text-violet-400" />
+            <Lock size={18} className="accent-text" />
             <h2 className="text-white font-semibold">Change Password</h2>
           </div>
 
@@ -239,7 +239,7 @@ function Profile() {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+                className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus  transition-colors"
               />
             </div>
             <div>
@@ -251,7 +251,7 @@ function Profile() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+                className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus  transition-colors"
               />
             </div>
           </div>
@@ -259,7 +259,7 @@ function Profile() {
           <button
             onClick={handleUpdatePassword}
             disabled={loading}
-            className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-900 disabled:text-violet-400 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+            className="flex items-center gap-2 accent-bg disabled:opacity-50 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
           >
             <Lock size={16} />
             Update password

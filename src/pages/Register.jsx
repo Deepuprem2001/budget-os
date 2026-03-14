@@ -39,7 +39,7 @@ function Register() {
 
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-600 rounded-xl mb-4">
+          <div className="inline-flex items-center justify-center w-12 h-12 accent-bg rounded-xl mb-4">
             <span className="text-white text-xl font-bold">₹</span>
           </div>
           <h1 className="text-3xl font-bold text-white">BudgetOS</h1>
@@ -69,7 +69,7 @@ function Register() {
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="John Smith"
                 required
-                className="w-full bg-gray-900 border border-gray-600 text-white placeholder-gray-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full bg-gray-900 border border-gray-600 text-white placeholder-gray-500 rounded-lg px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
               />
             </div>
 
@@ -84,7 +84,7 @@ function Register() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full bg-gray-900 border border-gray-600 text-white placeholder-gray-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full bg-gray-900 border border-gray-600 text-white placeholder-gray-500 rounded-lg px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
               />
             </div>
 
@@ -100,7 +100,7 @@ function Register() {
                 placeholder="••••••••"
                 required
                 minLength={6}
-                className="w-full bg-gray-900 border border-gray-600 text-white placeholder-gray-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full bg-gray-900 border border-gray-600 text-white placeholder-gray-500 rounded-lg px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
               />
               <p className="text-gray-500 text-xs mt-1">Minimum 6 characters</p>
             </div>
@@ -109,7 +109,7 @@ function Register() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-900 disabled:text-purple-400 text-white font-semibold py-3 rounded-lg transition-colors text-sm"
+              className="w-full accent-bg disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-colors text-sm"
             >
               {loading ? 'Creating account...' : 'Create account'}
             </button>
@@ -119,7 +119,7 @@ function Register() {
           {/* Login link */}
           <p className="text-center text-gray-400 text-sm mt-6">
             Already have an account?{' '}
-            <Link to="/" className="text-purple-400 hover:text-purple-300 font-medium">
+            <Link to="/" className="accent-text hover:opacity-80 font-medium">
               Sign in
             </Link>
           </p>

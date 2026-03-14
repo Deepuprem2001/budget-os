@@ -59,7 +59,7 @@ function Goals() {
           </div>
           <button
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+            className="flex items-center gap-2 accent-bg text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
           >
             <Plus size={18} />
             New Goal
@@ -74,7 +74,7 @@ function Goals() {
           </div>
           <div className="bg-gray-800/40 border border-gray-700/60 rounded-2xl p-5">
             <p className="text-gray-500 text-xs mb-1">Total Saved</p>
-            <p className="text-violet-400 text-2xl font-bold">
+            <p className="accent-text text-2xl font-bold">
               {formatCurrency(totalSaved)}
             </p>
           </div>
@@ -124,7 +124,7 @@ function Goals() {
             </p>
             <button
               onClick={() => setShowForm(true)}
-              className="bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
+              className="accent-bg text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
             >
               Create your first goal
             </button>
@@ -163,7 +163,7 @@ function Goals() {
                       onClick={() => setFormData({ ...formData, emoji })}
                       className={`w-10 h-10 rounded-xl text-xl flex items-center justify-center transition-colors ${
                         formData.emoji === emoji
-                          ? 'bg-violet-600 border-2 border-violet-400'
+                          ? 'accent-bg border-2 border-white/30'
                           : 'bg-gray-700/60 hover:bg-gray-700'
                       }`}
                     >
@@ -183,7 +183,7 @@ function Goals() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Holiday to Japan"
-                  className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+                  className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
                 />
               </div>
 
@@ -197,7 +197,7 @@ function Goals() {
                   value={formData.targetAmount}
                   onChange={(e) => setFormData({ ...formData, targetAmount: e.target.value })}
                   placeholder="e.g. 3000"
-                  className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+                  className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
                 />
               </div>
 
@@ -211,7 +211,7 @@ function Goals() {
                   value={formData.currentAmount}
                   onChange={(e) => setFormData({ ...formData, currentAmount: e.target.value })}
                   placeholder="e.g. 500"
-                  className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+                  className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
                 />
               </div>
 
@@ -224,7 +224,7 @@ function Goals() {
                   type="date"
                   value={formData.targetDate}
                   onChange={(e) => setFormData({ ...formData, targetDate: e.target.value })}
-                  className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+                  className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
                 />
               </div>
 
@@ -232,7 +232,7 @@ function Goals() {
               <button
                 onClick={handleSubmit}
                 disabled={!formData.name || !formData.targetAmount || !formData.targetDate}
-                className="w-full py-3 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-900 disabled:text-violet-500 text-white rounded-xl text-sm font-semibold transition-colors"
+                className="w-full py-3 accent-bg disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-semibold transition-colors"
               >
                 Create Goal
               </button>

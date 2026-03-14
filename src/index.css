@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
+  --accent-primary: #7c3aed;
+  --accent-light: #8b5cf6;
+  --accent-faint: #7c3aed1a;
+  --accent-border: #7c3aed33;
 }
 
 .light {
@@ -42,6 +45,18 @@
 }
 
 .light input::placeholder { color: #94a3b8 !important; }
+
+/* Accent colour utilities */
+.accent-bg { background-color: var(--accent-primary) !important; }
+.accent-bg-faint { background-color: var(--accent-faint) !important; }
+.accent-border { border-color: var(--accent-border) !important; }
+.accent-text { color: var(--accent-primary) !important; }
+.accent-text-light { color: var(--accent-light) !important; }
+
+.accent-bg:hover { filter: brightness(1.1); }
+
+/* Focus ring */
+.accent-focus:focus { border-color: var(--accent-primary) !important; outline: none; }
 
 @keyframes slide-in {
   from {

@@ -13,6 +13,7 @@ const useBudgetStore = create((set, get) => ({
   monthlyLimits: [],
   goals: mockGoals,
   debts: mockDebts,
+  hasCompletedOnboarding: true,
 
   // Filter actions
   setFilterMonth: (month) => set({ filterMonth: month }),
@@ -163,6 +164,11 @@ updateDebt: (id, updates) => set((state) => ({
 
 deleteDebt: (id) => set((state) => ({
   debts: state.debts.filter((d) => d.id !== id),
+})),
+
+completeOnboarding: (profileData) => set((state) => ({
+  hasCompletedOnboarding: true,
+  user: { ...state.user, ...profileData },
 })),
 
 }))

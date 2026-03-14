@@ -102,7 +102,7 @@ function BudgetCard({ category, budgetAmount, spentAmount, onSetBudget }) {
           placeholder={budgetAmount > 0 ? 'Update limit...' : 'Set limit...'}
           min="0"
           step="10"
-          className="flex-1 bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+          className="flex-1 bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-3 py-2 text-sm focus:outline-none accent-focus transition-colors"
           onKeyDown={(e) => {
             if (e.key === 'Enter' && e.target.value) {
               onSetBudget(category, parseFloat(e.target.value))
@@ -111,7 +111,7 @@ function BudgetCard({ category, budgetAmount, spentAmount, onSetBudget }) {
           }}
         />
         <button
-          className="px-3 py-2 bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium rounded-xl transition-colors"
+          className="px-3 py-2 accent-bg text-white text-sm font-medium rounded-xl transition-colors"
           onClick={(e) => {
             const input = e.target.previousSibling
             if (input.value) {

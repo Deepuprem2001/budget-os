@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/layout/ProtectedRoute'
 import Goals from './pages/Goals'
 import Debts from './pages/Debts'
+import Onboarding from './pages/Onboarding'
 
 function App() {
   const location = useLocation()
@@ -56,6 +57,7 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path="*" element={<NotFound />} />
+        <Route path="/onboarding" element={<Onboarding />} />
       </Routes>
     </AnimatePresence>
   )

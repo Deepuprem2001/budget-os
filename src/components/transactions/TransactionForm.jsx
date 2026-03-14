@@ -127,7 +127,7 @@ function TransactionForm({ onClose, editTransaction }) {
                 setError(null)
               }}
               placeholder="e.g. Monthly rent, Grocery shopping..."
-              className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+              className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
             />
           </div>
 
@@ -146,7 +146,7 @@ function TransactionForm({ onClose, editTransaction }) {
               placeholder="0.00"
               min="0"
               step="0.01"
-              className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+              className="w-full bg-gray-900/60 border border-gray-700 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
             />
           </div>
 
@@ -159,7 +159,7 @@ function TransactionForm({ onClose, editTransaction }) {
               <select
                 value={form.category}
                 onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
-                className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+                className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
               >
                 {CATEGORIES[form.type].map((cat) => (
                   <option key={cat} value={cat} className="bg-gray-800">
@@ -177,7 +177,7 @@ function TransactionForm({ onClose, editTransaction }) {
                 type="date"
                 value={form.date}
                 onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))}
-                className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500 transition-colors"
+                className="w-full bg-gray-900/60 border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none accent-focus transition-colors"
               />
             </div>
           </div>
@@ -188,7 +188,7 @@ function TransactionForm({ onClose, editTransaction }) {
             className={`w-full py-3 rounded-xl text-sm font-semibold transition-all ${
               form.type === 'income'
                 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30'
-                : 'bg-violet-600 text-white hover:bg-violet-700'
+                : 'accent-bg text-white'
             }`}
           >
             {editTransaction ? 'Update Transaction' : 'Add Transaction'}

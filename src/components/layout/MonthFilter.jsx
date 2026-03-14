@@ -36,7 +36,7 @@ function MonthFilter() {
       
       {/* Calendar icon */}
       <div className="flex items-center gap-2 px-3 py-1.5 border-r border-gray-700/60">
-        <Calendar size={14} className="text-violet-400" />
+        <Calendar size={14} className="accent-text" />
         <span className="text-gray-400 text-xs font-medium">Period</span>
       </div>
 
@@ -65,7 +65,7 @@ function MonthFilter() {
       <select
         value={filterYear}
         onChange={(e) => setFilterYear(Number(e.target.value))}
-        className="bg-transparent text-violet-400 text-sm font-semibold focus:outline-none cursor-pointer"
+        className="bg-transparent accent-text text-sm font-semibold focus:outline-none cursor-pointer"
       >
         {years.map((y) => (
           <option key={y} value={y} className="bg-gray-800">
