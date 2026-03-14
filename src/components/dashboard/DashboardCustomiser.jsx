@@ -7,6 +7,7 @@ import {
   Activity,
   Lightbulb,
   LayoutDashboard,
+  Bell,
 } from 'lucide-react'
 
 const WIDGETS = [
@@ -33,6 +34,12 @@ const WIDGETS = [
     label: 'Smart Insights',
     description: 'Personalised tips based on your data',
     icon: Lightbulb,
+  },
+  {
+    key: 'billReminders',
+    label: 'Bill Reminders',
+    description: 'Upcoming bills due in the next 30 days',
+    icon: Bell,
   },
 ]
 

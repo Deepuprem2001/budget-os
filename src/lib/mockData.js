@@ -198,3 +198,30 @@ export const mockDebts = [
     createdAt: '2026-01-01T00:00:00Z',
   },
 ]
+
+export const mockAssets = [
+  {
+    id: 'asset-1',
+    name: 'Current Account',
+    category: 'Cash',
+    emoji: '🏦',
+    value: 2450,
+    createdAt: '2026-01-01T00:00:00Z',
+  },
+  {
+    id: 'asset-2',
+    name: 'Stocks & Shares ISA',
+    category: 'Investments',
+    emoji: '📈',
+    value: 5800,
+    createdAt: '2026-01-01T00:00:00Z',
+  },
+  {
+    id: 'asset-3',
+    name: 'Car',
+    category: 'Vehicle',
+    emoji: '🚗',
+    value: 8500,
+    createdAt: '2026-01-01T00:00:00Z',
+  },
+] 

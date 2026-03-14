@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { mockTransactions, mockBudgets, mockUser, mockGoals, mockDebts } from '../lib/mockData'
+import { mockTransactions, mockBudgets, mockUser, mockGoals, mockDebts, mockAssets } from '../lib/mockData'
 
 const useBudgetStore = create((set, get) => ({
   // State
@@ -20,8 +20,11 @@ const useBudgetStore = create((set, get) => ({
     recentTransactions: true,
     healthScore: true,
     smartInsights: true,
+    billReminders: true,
   },
   recurringTransactions: [],
+  assets: mockAssets,
+  netWorthHistory: [],
 
   // Filter actions
   setFilterMonth: (month) => set({ filterMonth: month }),
@@ -294,6 +297,63 @@ processRecurringTransactions: () => set((state) => {
   return {
     recurringTransactions: updatedRecurring,
     transactions: [...newTransactions, ...state.transactions],
+  }
+}),
+
+markRecurringAsPaid: (id) => set((state) => ({
+  recurringTransactions: state.recurringTransactions.map((r) =>
+    r.id === id ? { ...r, lastGenerated: new Date().toISOString() } : r
+  ),
+})),
+
+addAsset: (asset) => set((state) => ({
+  assets: [
+    {
+      ...asset,
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      createdAt: new Date().toISOString(),
+    },
+    ...state.assets,
+  ],
+})),
+
+updateAsset: (id, updates) => set((state) => ({
+  assets: state.assets.map((a) => a.id === id ? { ...a, ...updates } : a),
+})),
+
+deleteAsset: (id) => set((state) => ({
+  assets: state.assets.filter((a) => a.id !== id),
+})),
+
+saveNetWorthSnapshot: () => set((state) => {
+  const totalAssets = state.assets.reduce((sum, a) => sum + a.value, 0)
+  const totalLiabilities = state.debts.reduce((sum, d) => sum + d.remainingAmount, 0)
+  const netWorth = totalAssets - totalLiabilities
+  const today = new Date()
+  const monthKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`
+
+  // Replace existing snapshot for this month or add new
+  const exists = state.netWorthHistory.find((h) => h.month === monthKey)
+  if (exists) {
+    return {
+      netWorthHistory: state.netWorthHistory.map((h) =>
+        h.month === monthKey
+          ? { ...h, assets: totalAssets, liabilities: totalLiabilities, netWorth }
+          : h
+      ),
+    }
+  }
+  return {
+    netWorthHistory: [
+      ...state.netWorthHistory,
+      {
+        month: monthKey,
+        assets: totalAssets,
+        liabilities: totalLiabilities,
+        netWorth,
+        savedAt: today.toISOString(),
+      },
+    ].sort((a, b) => a.month.localeCompare(b.month)),
   }
 }),
 

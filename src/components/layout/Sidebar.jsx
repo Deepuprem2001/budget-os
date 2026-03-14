@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 import { useTheme, ACCENT_COLOURS } from '../../hooks/useTheme'
+import { TrendingUp } from 'lucide-react'
 
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -25,6 +26,7 @@ const navItems = [
   { to: '/analytics', icon: BarChart3, label: 'Analytics' },
   { to: '/debts', icon: CreditCard, label: 'Debts' },
   { to: '/goals', icon: Target, label: 'Goals' },
+  { to: '/networth', icon: TrendingUp, label: 'Net Worth' },
 ]
 
 function Sidebar() {

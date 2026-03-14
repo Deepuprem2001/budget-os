@@ -11,6 +11,9 @@ import { Plus, Download } from 'lucide-react'
 import EmptyState from '../components/ui/EmptyState'
 import PageWrapper from '../components/ui/PageWrapper'
 import RecurringTransactions from '../components/transactions/RecurringTransactions'
+import PDFReport from '../components/ui/PDFReport'
+import { exportToPDF } from '../lib/exportPDF'
+import { FileText } from 'lucide-react'
 
 function Transactions() {
   const getFilteredTransactions = useBudgetStore(
@@ -38,6 +41,20 @@ function Transactions() {
 
   const totalThisMonth = getFilteredTransactions().length
 
+  const [exportingPDF, setExportingPDF] = useState(false)
+
+  const handleExportPDF = async () => {
+    setExportingPDF(true)
+    // Small delay to let the hidden component render
+    await new Promise((resolve) => setTimeout(resolve, 300))
+    await exportToPDF({
+      elementId: 'pdf-report',
+      filename: `budgetos-${filterYear}-${String(filterMonth).padStart(2, '0')}.pdf`,
+      title: `BudgetOS Report — ${filterMonth}/${filterYear}`,
+    })
+    setExportingPDF(false)
+  }
+
   return (
     <Layout>
       <PageWrapper>
@@ -60,6 +77,14 @@ function Transactions() {
             >
               <Download size={18} />
               Export CSV
+            </button>
+            <button
+              onClick={handleExportPDF}
+              disabled={exportingPDF || filteredTransactions.length === 0}
+              className="flex items-center gap-2 bg-gray-700/60 hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed text-gray-300 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors border border-gray-700"
+            >
+              <FileText size={18} />
+              {exportingPDF ? 'Generating...' : 'Export PDF'}
             </button>
             <button
               onClick={() => setShowForm(true)}
@@ -102,6 +127,8 @@ function Transactions() {
         )}
 
         <RecurringTransactions />
+
+        <PDFReport month={filterMonth} year={filterYear} />
 
       </div>
 

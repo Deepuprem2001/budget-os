@@ -7,6 +7,7 @@ import RecentTransactions from '../components/dashboard/RecentTransactions'
 import SpendingForecast from '../components/dashboard/SpendingForecast'
 import SmartInsights from '../components/dashboard/SmartInsights'
 import FinancialHealthScore from '../components/dashboard/FinancialHealthScore'
+import BillReminders from '../components/dashboard/BillReminders'
 import DashboardCustomiser from '../components/dashboard/DashboardCustomiser'
 import EmptyState from '../components/ui/EmptyState'
 import useBudgetStore from '../store/useBudgetStore'
@@ -26,9 +27,9 @@ function Dashboard() {
 
   const [showCustomiser, setShowCustomiser] = useState(false)
 
-  // Check which row has any widgets visible
   const showRow1 = dashboardWidgets.spendingForecast || dashboardWidgets.recentTransactions
   const showRow2 = dashboardWidgets.healthScore || dashboardWidgets.smartInsights
+  const showRow3 = dashboardWidgets.billReminders
 
   return (
     <Layout>
@@ -58,7 +59,6 @@ function Dashboard() {
           {/* Summary cards — always visible */}
           <SummaryCards />
 
-          {/* No data at all */}
           {!hasAnyData ? (
             <EmptyState
               emoji="💰"
@@ -101,8 +101,11 @@ function Dashboard() {
                 </div>
               )}
 
+              {/* Row 3 — Bill Reminders */}
+              {showRow3 && <BillReminders />}
+
               {/* All widgets hidden */}
-              {!showRow1 && !showRow2 && (
+              {!showRow1 && !showRow2 && !showRow3 && (
                 <EmptyState
                   emoji="🧩"
                   title="All widgets are hidden"
@@ -116,7 +119,6 @@ function Dashboard() {
 
         </div>
 
-        {/* Customiser modal */}
         <AnimatePresence>
           {showCustomiser && (
             <DashboardCustomiser onClose={() => setShowCustomiser(false)} />

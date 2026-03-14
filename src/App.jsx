@@ -12,6 +12,7 @@ import ProtectedRoute from './components/layout/ProtectedRoute'
 import Goals from './pages/Goals'
 import Debts from './pages/Debts'
 import Onboarding from './pages/Onboarding'
+import NetWorth from './pages/NetWorth'
 
 function App() {
   const location = useLocation()
@@ -54,6 +55,11 @@ function App() {
         <Route path="/profile" element={
           <ProtectedRoute>
             <Profile />
+          </ProtectedRoute>
+        } />
+        <Route path="/networth" element={
+          <ProtectedRoute>
+            <NetWorth />
           </ProtectedRoute>
         } />
         <Route path="*" element={<NotFound />} />
