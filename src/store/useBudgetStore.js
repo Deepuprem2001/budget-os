@@ -1,5 +1,14 @@
 import { create } from 'zustand'
-import { mockTransactions, mockBudgets, mockUser, mockGoals, mockDebts, mockAssets } from '../lib/mockData'
+import {
+  mockTransactions,
+  mockBudgets,
+  mockUser,
+  mockGoals,
+  mockDebts,
+  mockAssets,
+  mockRecurringTransactions,
+  mockNetWorthHistory,
+} from '../lib/mockData'
 
 const useBudgetStore = create((set, get) => ({
   // State
@@ -22,9 +31,9 @@ const useBudgetStore = create((set, get) => ({
     smartInsights: true,
     billReminders: true,
   },
-  recurringTransactions: [],
+  recurringTransactions: mockRecurringTransactions,
   assets: mockAssets,
-  netWorthHistory: [],
+  netWorthHistory:mockNetWorthHistory,
 
   // Filter actions
   setFilterMonth: (month) => set({ filterMonth: month }),
