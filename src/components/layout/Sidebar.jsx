@@ -92,13 +92,13 @@ function Sidebar() {
       <div className="px-4 py-6 border-t border-gray-700 space-y-1">
 
         {/* Theme toggle */}
-        <button
+        {/* <button
           onClick={toggleTheme}
           className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-gray-700 hover:text-white transition-colors w-full"
         >
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           {theme === 'dark' ? 'Light mode' : 'Dark mode'}
-        </button>
+        </button> */}
 
         {/* Accent colour picker */}
         <button
