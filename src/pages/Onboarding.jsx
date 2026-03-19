@@ -76,16 +76,16 @@ function Onboarding() {
     setStep((s) => s - 1)
   }
 
-  const handleFinish = () => {
-    // Save profile
-    completeOnboarding({
+  const handleFinish = async () => {
+    // Save profile first and WAIT for it
+    await completeOnboarding({
       name: profile.name,
       currency: profile.currency,
     })
 
     // Save budget if filled
     if (budget.amount) {
-      setBudget({
+      await setBudget({
         category: budget.category,
         amount: parseFloat(budget.amount),
         month: new Date().getMonth() + 1,
@@ -95,12 +95,13 @@ function Onboarding() {
 
     // Save transaction if filled
     if (transaction.description && transaction.amount) {
-      addTransaction({
+      await addTransaction({
         ...transaction,
         amount: parseFloat(transaction.amount),
       })
     }
 
+    // Only navigate AFTER everything is saved
     navigate('/dashboard')
   }
 

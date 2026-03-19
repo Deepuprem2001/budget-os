@@ -113,7 +113,7 @@ const useBudgetStore = create((set, get) => ({
           smartInsights: true,
           billReminders: true,
         },
-        hasCompletedOnboarding: profile?.full_name ? true : false,
+        hasCompletedOnboarding: profile?.onboarding_completed === true,
         bootstrapping: false,
         loading: false,
       })
@@ -681,16 +681,22 @@ const useBudgetStore = create((set, get) => ({
   // ─── Onboarding ───────────────────────────────────────────────────────────
   completeOnboarding: async (profileData) => {
     const { user } = get()
-    await supabase
+    const { error } = await supabase
       .from('profiles')
-      .update({ full_name: profileData.name, currency: profileData.currency })
+      .update({
+        full_name: profileData.name,
+        currency: profileData.currency || 'GBP',
+        onboarding_completed: true,
+      })
       .eq('id', user.id)
+
+    if (error) { console.error(error); return }
 
     set((state) => ({
       hasCompletedOnboarding: true,
       user: { ...state.user, ...profileData },
     }))
-  },
+},
 
   // ─── Computed values ──────────────────────────────────────────────────────
   getFilteredTransactions: () => {
