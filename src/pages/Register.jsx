@@ -10,6 +10,8 @@ function Register() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
+  const [registered, setRegistered] = useState(false)
+
   const handleRegister = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -19,9 +21,7 @@ function Register() {
       email,
       password,
       options: {
-        data: {
-          full_name: fullName,
-        }
+        data: { full_name: fullName }
       }
     })
 
@@ -32,6 +32,24 @@ function Register() {
       navigate('/dashboard')
     }
   }
+
+if (registered) {
+  return (
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
+      <div className="w-full max-w-md text-center">
+        <div className="text-6xl mb-6">📧</div>
+        <h1 className="text-2xl font-bold text-white mb-3">Check your email!</h1>
+        <p className="text-gray-400 mb-2">
+          We've sent a confirmation link to
+        </p>
+        <p className="text-white font-semibold mb-6">{email}</p>
+        <p className="text-gray-500 text-sm">
+          Click the link in the email to confirm your account and get started.
+        </p>
+      </div>
+    </div>
+  )
+}
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">

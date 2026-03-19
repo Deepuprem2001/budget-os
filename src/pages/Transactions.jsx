@@ -16,9 +16,7 @@ import { exportToPDF } from '../lib/exportPDF'
 import { FileText } from 'lucide-react'
 
 function Transactions() {
-  const getFilteredTransactions = useBudgetStore(
-    (state) => state.getFilteredTransactions
-  )
+  const transactions = useBudgetStore((state) => state.transactions)
   const filterMonth = useBudgetStore((state) => state.filterMonth)
   const filterYear = useBudgetStore((state) => state.filterYear)
 
@@ -27,8 +25,17 @@ function Transactions() {
   const [filterType, setFilterType] = useState('all')
   const [filterCategory, setFilterCategory] = useState('all')
 
-  // Apply search and filters on top of month filter
-  const filteredTransactions = getFilteredTransactions().filter((t) => {
+  // Filter by month first
+  const monthTransactions = transactions.filter((t) => {
+    const date = new Date(t.date)
+    return (
+      date.getMonth() + 1 === filterMonth &&
+      date.getFullYear() === filterYear
+    )
+  })
+
+  // Then apply search and filters
+  const filteredTransactions = monthTransactions.filter((t) => {
     const matchesSearch = search
       ? t.description.toLowerCase().includes(search.toLowerCase()) ||
         t.category.toLowerCase().includes(search.toLowerCase())
@@ -39,7 +46,7 @@ function Transactions() {
     return matchesSearch && matchesType && matchesCategory
   })
 
-  const totalThisMonth = getFilteredTransactions().length
+  const totalThisMonth = monthTransactions.length
 
   const [exportingPDF, setExportingPDF] = useState(false)
 
