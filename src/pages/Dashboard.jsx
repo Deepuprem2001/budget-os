@@ -62,7 +62,7 @@ function Dashboard() {
           {!hasAnyData ? (
             <EmptyState
               emoji="💰"
-              title="Welcome to FinSight!"
+              title="Welcome to BudgetOS!"
               message="Start by adding your first transaction — your income, bills or expenses. Everything else will fill in automatically."
               action={() => navigate('/transactions')}
               actionLabel="Add your first transaction"

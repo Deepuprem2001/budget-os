@@ -57,7 +57,7 @@ function Sidebar() {
           >
             <span className="text-white font-bold text-lg">₿</span>
           </div>
-          <span className="text-white font-bold text-xl">FinSight</span>
+          <span className="text-white font-bold text-xl">BudgetOS</span>
         </div>
         <button
           onClick={closeMobile}

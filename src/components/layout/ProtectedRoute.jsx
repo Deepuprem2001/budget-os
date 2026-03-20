@@ -18,7 +18,7 @@ function ProtectedRoute({ children }) {
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <div className="text-center">
         <div className="text-4xl mb-4">💰</div>
-        <p className="text-white font-semibold text-lg">FinSight</p>
+        <p className="text-white font-semibold text-lg">BudgetOS</p>
         <p className="text-gray-500 text-sm mt-2">Loading your data...</p>
       </div>
     </div>

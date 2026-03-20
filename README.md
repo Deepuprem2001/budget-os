@@ -1,8 +1,8 @@
-# 💰 FinSight — Personal Finance Platform
+# 💰 BudgetOS — Personal Finance Platform
 
 > A full-stack personal finance platform built with React, Supabase and Tailwind CSS. Track spending, manage budgets, monitor debts, set financial goals and get personalised smart insights — all in one place.
 
-![FinSight Dashboard](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square)
+![BudgetOS Dashboard](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
 ![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=flat-square&logo=supabase)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?style=flat-square&logo=tailwindcss)

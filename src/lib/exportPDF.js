@@ -3,8 +3,8 @@ import html2canvas from 'html2canvas'
 
 export const exportToPDF = async ({
   elementId,
-  filename = 'FinSight-report.pdf',
-  title = 'FinSight Financial Report',
+  filename = 'BudgetOS-report.pdf',
+  title = 'BudgetOS Financial Report',
 }) => {
   const element = document.getElementById(elementId)
   if (!element) return

@@ -111,7 +111,7 @@ function Onboarding() {
       icon: Sparkles,
       iconColor: 'text-violet-400',
       iconBg: 'bg-violet-500/20',
-      title: 'Welcome to FinSight',
+      title: 'Welcome to BudgetOS',
       subtitle: "Let's get you set up in 3 quick steps",
     },
     {
@@ -144,7 +144,7 @@ function Onboarding() {
       iconColor: 'text-emerald-400',
       iconBg: 'bg-emerald-500/20',
       title: "You're all set!",
-      subtitle: 'Your FinSight is ready to go',
+      subtitle: 'Your BudgetOS is ready to go',
     },
   ]
 
