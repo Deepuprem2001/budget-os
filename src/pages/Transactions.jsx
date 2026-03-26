@@ -68,36 +68,41 @@ function Transactions() {
       <div className="space-y-6">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-white">Transactions</h1>
-            <p className="text-gray-400 mt-1">
-              Showing {filteredTransactions.length} of {totalThisMonth} transactions
-            </p>
+        <div className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-bold text-white">Transactions</h1>
+              <p className="text-gray-400 mt-1">
+                Showing {filteredTransactions.length} of {totalThisMonth} transactions
+              </p>
+            </div>
+            <button
+              onClick={() => setShowForm(true)}
+              className="flex items-center gap-2 accent-bg text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+            >
+              <Plus size={18} />
+              <span className="hidden sm:inline">Add Transaction</span>
+              <span className="sm:hidden">Add</span>
+            </button>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
             <MonthFilter />
             <button
               onClick={() => exportToCSV(filteredTransactions, `transactions-${filterYear}-${String(filterMonth).padStart(2, '0')}.csv`)}
               disabled={filteredTransactions.length === 0}
-              className="flex items-center gap-2 bg-gray-700/60 hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed text-gray-300 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors border border-gray-700"
+              className="flex items-center gap-2 bg-gray-700/60 hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed text-gray-300 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors border border-gray-700"
             >
-              <Download size={18} />
-              Export CSV
+              <Download size={16} />
+              <span className="hidden sm:inline">Export CSV</span>
             </button>
             <button
               onClick={handleExportPDF}
               disabled={exportingPDF || filteredTransactions.length === 0}
-              className="flex items-center gap-2 bg-gray-700/60 hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed text-gray-300 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors border border-gray-700"
+              className="flex items-center gap-2 bg-gray-700/60 hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed text-gray-300 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors border border-gray-700"
             >
-              <FileText size={18} />
-              {exportingPDF ? 'Generating...' : 'Export PDF'}
-            </button>
-            <button
-              onClick={() => setShowForm(true)}
-              className="flex items-center gap-2 accent-bg text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors">
-              <Plus size={18} />
-              Add Transaction
+              <FileText size={16} />
+              <span className="hidden sm:inline">{exportingPDF ? 'Generating...' : 'Export PDF'}</span>
+              <span className="sm:hidden">PDF</span>
             </button>
           </div>
         </div>

@@ -44,7 +44,7 @@ function Analytics() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                   <p className="text-white font-semibold">This Month's Breakdown</p>
                   <MonthFilter />
                 </div>

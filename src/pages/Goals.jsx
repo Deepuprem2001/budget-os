@@ -51,20 +51,20 @@ function Goals() {
       <PageWrapper>
       <div className="space-y-8">
 
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-white">Financial Goals</h1>
-            <p className="text-gray-400 mt-1">Track your savings targets</p>
-          </div>
-          <button
-            onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 accent-bg text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
-          >
-            <Plus size={18} />
-            New Goal
-          </button>
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-white">Financial Goals</h1>
+          <p className="text-gray-400 mt-1">Track your savings targets</p>
         </div>
+        <button
+          onClick={() => setShowForm(true)}
+          className="flex items-center gap-2 accent-bg text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+        >
+          <Plus size={18} />
+          <span className="hidden sm:inline">New Goal</span>
+        </button>
+      </div>
 
         {/* Summary */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

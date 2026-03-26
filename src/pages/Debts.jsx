@@ -92,7 +92,7 @@ function Debts() {
             className="flex items-center gap-2 accent-bg text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
           >
             <Plus size={18} />
-            Add Debt
+            <span className="hidden sm:inline">Add Debt</span>
           </button>
         </div>
 
